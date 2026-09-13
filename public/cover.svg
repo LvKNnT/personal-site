@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 600" role="img" aria-labelledby="title description">
+  <title id="title">Abstract monochrome landscape</title>
+  <desc id="description">Soft layered curves and a subtle grid in neutral gray tones.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f5f5"/>
+      <stop offset="1" stop-color="#d6d6d6"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#111" stroke-opacity=".055"/>
+    </pattern>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#181818" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#555" stop-opacity=".18"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="600" fill="url(#background)"/>
+  <rect width="1600" height="600" fill="url(#grid)"/>
+  <circle cx="1320" cy="125" r="215" fill="#fff" fill-opacity=".45"/>
+  <path d="M0 435C225 300 405 545 650 390s390-80 540 8 270 85 410-5v207H0Z" fill="#737373" fill-opacity=".28"/>
+  <path d="M0 505c230-115 405 34 620-38s390-12 535 54 285 41 445-32v111H0Z" fill="url(#fade)"/>
+</svg>
