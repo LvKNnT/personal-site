@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
 
 type PostPageProps = {
@@ -40,7 +43,12 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
         </header>
         <div className="markdown-body post-article-body">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeRaw, rehypeKatex]}
+          >
+            {post.content}
+          </ReactMarkdown>
         </div>
       </article>
     </main>

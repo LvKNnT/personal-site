@@ -122,6 +122,10 @@ h1 { font-size: 1.7rem; font-weight: 680; letter-spacing: -.035em; line-height: 
 .markdown-body code { background: var(--surface); border-radius: 5px; color: var(--foreground); font-size: .88em; padding: .15em .35em; }
 .markdown-body pre { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow-x: auto; padding: 14px 16px; }
 .markdown-body pre code { background: transparent; padding: 0; }
+.markdown-body table { border-collapse: collapse; display: block; margin: 1.25em 0; max-width: 100%; overflow-x: auto; width: max-content; }
+.markdown-body th, .markdown-body td { border: 1px solid var(--border); min-width: 9rem; padding: .65rem .75rem; text-align: left; vertical-align: top; }
+.markdown-body th { background: var(--surface); color: var(--foreground); font-weight: 650; }
+.markdown-body .katex-display { margin: 1.25em 0; overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
 .markdown-body hr { border: 0; border-top: 1px solid var(--border); margin: 1.5em 0; }
 .timeline { display: grid; }
 .timeline-item { display: grid; gap: 22px; grid-template-columns: 62px 1fr; padding: 9px 0; }
