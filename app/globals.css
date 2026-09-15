@@ -125,7 +125,26 @@ h1 { font-size: 1.7rem; font-weight: 680; letter-spacing: -.035em; line-height: 
 .markdown-body table { border-collapse: collapse; display: block; margin: 1.25em 0; max-width: 100%; overflow-x: auto; width: max-content; }
 .markdown-body th, .markdown-body td { border: 1px solid var(--border); min-width: 9rem; padding: .65rem .75rem; text-align: left; vertical-align: top; }
 .markdown-body th { background: var(--surface); color: var(--foreground); font-weight: 650; }
-.markdown-body .katex-display { margin: 1.25em 0; overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+.markdown-body mjx-container {
+  color: var(--foreground);
+  max-width: 100%;
+}
+.markdown-body mjx-container:not([display='true']) { display: inline; }
+.markdown-body mjx-container:not([display='true']) > svg {
+  display: inline-block;
+}
+.markdown-body mjx-container.MathJax[display='true'] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .35em .45em;
+  width: 100%;
+}
+.markdown-body mjx-container.MathJax[display='true'] > svg { flex: 0 0 auto; }
+.markdown-body mjx-container > svg { overflow: visible; }
 .markdown-body hr { border: 0; border-top: 1px solid var(--border); margin: 1.5em 0; }
 .timeline { display: grid; }
 .timeline-item { display: grid; gap: 22px; grid-template-columns: 62px 1fr; padding: 9px 0; }
@@ -166,6 +185,7 @@ h1 { font-size: 1.7rem; font-weight: 680; letter-spacing: -.035em; line-height: 
 .post-date { display: grid; gap: 3px; justify-content: initial; }
 .post-copy p { color: var(--muted); line-height: 1.6; margin: 8px 0 0; }
 .post-title { margin-top: 0; }
+.post-preview-image { aspect-ratio: 16 / 9; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; display: block; margin-top: 18px; object-fit: cover; width: 100%; }
 .posts-note { border-top: 1px solid var(--border); color: var(--faint); font-size: .82rem; margin: 0; padding: 20px 28px; }
 .post-article-header { border-bottom: 1px solid var(--border); padding: 28px; }
 .post-article-header h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); margin: 24px 0 12px; }

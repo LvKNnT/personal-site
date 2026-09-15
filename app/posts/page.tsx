@@ -26,6 +26,14 @@ export default function PostsPage() {
               <div className="post-copy">
                 <div className="post-title"><h2>{post.title}</h2><ArrowUpRight size={18} aria-hidden="true" /></div>
                 <p>{post.description}</p>
+                {post.previewImage ? (
+                  <img
+                    className="post-preview-image"
+                    src={post.previewImage.src}
+                    alt={post.previewImage.alt}
+                    loading="lazy"
+                  />
+                ) : null}
               </div>
             </a>
           ))}

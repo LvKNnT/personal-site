@@ -6,6 +6,10 @@ export type Post = {
   fullDate: string;
   description: string;
   readingTime: string;
+  previewImage?: {
+    src: string;
+    alt: string;
+  };
   content: string;
 };
 
@@ -14,6 +18,19 @@ const postFiles = import.meta.glob<string>('../content/posts/*.md', {
   query: '?raw',
   import: 'default',
 });
+
+function getFirstImage(content: string): Post['previewImage'] {
+  const match = content.match(/!\[([^\]]*)\]\(\s*(?:<([^>]+)>|([^\s)]+))(?:\s+["'][^"']*["'])?\s*\)/);
+  if (!match) return undefined;
+
+  const source = match[2] ?? match[3];
+  const publicAsset = source.match(/(?:^|\/)public\/(.+)$/);
+
+  return {
+    src: publicAsset ? `/${publicAsset[1]}` : source,
+    alt: match[1] || 'Post preview',
+  };
+}
 
 function parsePost(path: string, source: string): Post {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
@@ -43,6 +60,7 @@ function parsePost(path: string, source: string): Post {
     fullDate: new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(parsedDate),
     description: attributes.description ?? '',
     readingTime: attributes.readingTime ?? `${Math.max(1, Math.ceil(words / 200))} min`,
+    previewImage: getFirstImage(content),
     content,
   };
 }

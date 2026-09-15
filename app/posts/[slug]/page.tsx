@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { ArrowLeft } from 'lucide-react';
 import { notFound } from 'next/navigation';
-import rehypeKatex from 'rehype-katex';
+import rehypeMathjax from 'rehype-mathjax/browser';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import { getAllPosts, getPostBySlug } from '@/lib/posts';
+import { MathJaxLoader } from '@/components/mathjax-loader';
 
 type PostPageProps = {
   params: Promise<{ slug: string }>;
@@ -45,11 +46,12 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="markdown-body post-article-body">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeRaw, rehypeKatex]}
+            rehypePlugins={[rehypeRaw, rehypeMathjax]}
           >
             {post.content}
           </ReactMarkdown>
         </div>
+        <MathJaxLoader />
       </article>
     </main>
   );
