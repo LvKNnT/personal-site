@@ -22,7 +22,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <a className="home-mark" href="/" aria-label="Home">
-          <img src="/avatar.jpg" alt="" />
+          <img src="/avatar-mark.png" alt="" width="1254" height="1254" />
         </a>
         <nav aria-label="Primary navigation">
           {links.map((link) => (

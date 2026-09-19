@@ -7,4 +7,4 @@ description: A short note about this website.
 
 Im fomo
 
-![Eleanor](../../public/work/img/this-website.jpg)  
+![Eleanor](/work/img/this-website.jpg)

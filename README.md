@@ -108,6 +108,20 @@ Post content goes here.
 
 `readingTime` is optional. When omitted, it is calculated automatically at approximately 200 words per minute.
 
+To connect multiple posts as a series, give every chapter the same `series` value and an increasing `seriesOrder`:
+
+```md
+---
+title: Lattice Notes — Chapter 1
+date: 2026-09-15
+description: Foundations of SIS and LWE.
+series: Lattice Notes
+seriesOrder: 1
+---
+```
+
+Series posts automatically show their chapter position and Previous/Next chapter buttons.
+
 The first Markdown image is used as the post preview image:
 
 ```md

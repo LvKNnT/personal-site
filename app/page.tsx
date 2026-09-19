@@ -20,8 +20,10 @@ export default function ProfilePage() {
           </div>
             <img
               className="avatar"
-              src="/avatar.jpg"
+              src="/avatar.png"
               alt="Lâm Vĩnh Khang"
+              width="1600"
+              height="1600"
             />
           </div>
 

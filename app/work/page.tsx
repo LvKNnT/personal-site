@@ -139,7 +139,7 @@ const projects: Project[] = [
     description: 'Some little Easter eggs, I guess. Thanks for reading this far - I really appreciate it.',
     tags: ['GitHub'],
     href: 'https://github.com/LvKNnT',
-    image: '/avatar.jpg',
+    image: '/avatar.png',
     imageAlt: 'My github profile picture',
   } 
 ];

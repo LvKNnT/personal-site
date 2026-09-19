@@ -6,6 +6,9 @@ export type Post = {
   fullDate: string;
   description: string;
   readingTime: string;
+  hidden: boolean;
+  series?: string;
+  seriesOrder?: number;
   previewImage?: {
     src: string;
     alt: string;
@@ -60,6 +63,9 @@ function parsePost(path: string, source: string): Post {
     fullDate: new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(parsedDate),
     description: attributes.description ?? '',
     readingTime: attributes.readingTime ?? `${Math.max(1, Math.ceil(words / 200))} min`,
+    hidden: attributes.hidden === 'true',
+    series: attributes.series || undefined,
+    seriesOrder: attributes.seriesOrder ? Number(attributes.seriesOrder) : undefined,
     previewImage: getFirstImage(content),
     content,
   };
@@ -68,9 +74,27 @@ function parsePost(path: string, source: string): Post {
 export function getAllPosts(): Post[] {
   return Object.entries(postFiles)
     .map(([path, source]) => parsePost(path, source))
-    .sort((a, b) => b.date.localeCompare(a.date));
+    .filter((post) => !post.hidden)
+    .sort((a, b) => {
+      const dateOrder = b.date.localeCompare(a.date);
+
+      if (dateOrder !== 0) return dateOrder;
+      if (a.series && a.series === b.series) {
+        return (b.seriesOrder ?? 0) - (a.seriesOrder ?? 0);
+      }
+
+      return a.title.localeCompare(b.title);
+    });
 }
 
 export function getPostBySlug(slug: string): Post | undefined {
-  return getAllPosts().find((post) => post.slug === slug);
+  return Object.entries(postFiles)
+    .map(([path, source]) => parsePost(path, source))
+    .find((post) => post.slug === slug);
+}
+
+export function getSeriesPosts(series: string): Post[] {
+  return getAllPosts()
+    .filter((post) => post.series === series)
+    .sort((a, b) => (a.seriesOrder ?? 0) - (b.seriesOrder ?? 0));
 }
