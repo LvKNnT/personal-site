@@ -31,7 +31,9 @@ const projects: Project[] = [
     type: 'Team project',
     description: 'Build front-end components and back-end APIs for a web-based tools for multi-hour video retrieval challenge. Also help extracting ASR and OCR data from the video dataset and building a retrieval system for the challenge.',
     tags: ['Python', 'PyTorch', 'KIS'],
-    href: 'https://github.com/KiyoshiKoii/AICHCM-2026-Glitch'
+    href: 'https://github.com/KiyoshiKoii/AICHCM-2026-Glitch',
+    image: '/work/img/AIC-group.jpeg',
+    imageAlt: 'AI Challenge 2026 team project screenshot',
   },
   {
     year: '2026',
@@ -39,7 +41,9 @@ const projects: Project[] = [
     type: 'Personal project',
     description: 'Simultaneously built my own retrieval system for the challenge using a different approach from the team project, giving the team more options for handling edge cases.',
     tags: ['Python', 'PyTorch', 'SLM', 'KIS'],
-    href: 'https://github.com/LvKNnT/AIC-Glitch'
+    href: 'https://github.com/LvKNnT/AIC-Glitch',
+    image: '/work/img/AIC-personal.png',
+    imageAlt: 'AI Challenge 2026 personal project screenshot',
   },
   {
     year: '2026',
@@ -47,7 +51,9 @@ const projects: Project[] = [
     type: 'Team Project',
     description: 'Builds and improves an OpenCode AI agent that reads the business requirement for a Campus Space Management System and generates the full set of database design artifacts - from requirement analysis through SQL query design, and then extends that database with maintenance impact levels, concurrency control, a large generated dataset and an indexing study.',
     tags: ['Microsoft SQL Server (T-SQL)', 'DBMS', 'AI agents'],
-    href: 'https://github.com/LvKNnT/CS486-Campus-Space-Management-System'
+    href: 'https://github.com/LvKNnT/CS486-Campus-Space-Management-System',
+    image: '/work/img/CampusDB.png',
+    imageAlt: 'Campus Space Management System database schema',
   },
   {
     year: '2026',
@@ -79,6 +85,9 @@ const projects: Project[] = [
     type: 'Research project',
     description: 'Audited data and benchmark results across Vimeo-90K, DAVIS, GDM and a 187-sequence real-world dataset; helped analyze failure modes and experimental limitations.',
     tags: ['Python', 'PyTorch', 'Computer vision'],
+    image: '/work/img/VFI.png',
+    imageAlt: 'Toward Real-World Discontinuity Supervision for Video Frame Interpolation pipeline',
+
   },
   {
     year: '2025',
@@ -94,7 +103,9 @@ const projects: Project[] = [
     type: 'Team Project',
     description: 'Built and deployed backend APIs for a conversational place-discovery application, integrating MongoDB/Firebase with intent routing and personalized retrieval.',
     tags: ['Python', 'Machine Learning', 'Recommendation Systems'],
-    href: 'https://github.com/layb3r/Hybrid-Destination-Recommender'
+    href: 'https://github.com/layb3r/Hybrid-Destination-Recommender',
+    image: '/work/img/HybridDestinationRecommender.png',
+    imageAlt: 'Hybrid Destination Recommender app screenshot',
   },
   {
     year: '2025',
@@ -116,7 +127,7 @@ const projects: Project[] = [
   },
   {
     year: '2025',
-    title: 'Data C  helf',
+    title: 'Data Chelf',
     type: 'Personal project',
     description: 'An interactive desktop application for exploring common data structures and watching their operations step by step. The project is written in C++ and uses raylib for graphics, audio, and input.',
     tags: ['C++', 'Raylib', 'Data structures'],
