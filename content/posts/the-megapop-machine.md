@@ -5,6 +5,8 @@ description: Summary on this interesting topics
 # readingTime: 4 min
 ---
 
+![cover.png](/public/post/the-megapop-machine/cover.png)
+
 > Title
 ```
 Beyond NISQ: The Megaquop Machine
@@ -16,8 +18,7 @@ John Preskill, Institute for Quantum Information and Matter,
 California Institute of Technology, Pasadena, California, United States.
 ```
 
-The article appeared in `ACM Transactions on Quantum Computing`, volume
-6, number 3, article 18, in April 2025.
+[The article appeared in `ACM Transactions on Quantum Computing`, volume 6, number 3, article 18, in April 2025.](https://doi.org/10.1145/3723153)
 
 # About ISQ
 There are a lot of more new `ISQ`. A 'base' ISQ can be simply understand as `Intermediate-scale Quantum` which comes from `NISQ` - Noise Intermediate-Scale Quantum. Welp, basically, we all know that qubit is very fragile, so that "error" in calculation is expectable. This fatal weakness make quantum machine itself can not scale big since the bigger the machine, the more unstable it is.
