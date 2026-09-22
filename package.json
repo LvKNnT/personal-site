@@ -29,6 +29,7 @@
     "react-resizable-panels": "4.5.8",
     "react-server-dom-webpack": "19.2.6",
     "recharts": "3.8.0",
+    "rehype-highlight": "^7.0.2",
     "rehype-mathjax": "^7.1.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",

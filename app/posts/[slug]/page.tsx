@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { notFound } from 'next/navigation';
+import rehypeHighlight from 'rehype-highlight';
 import rehypeMathjax from 'rehype-mathjax/browser';
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
@@ -54,7 +55,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="markdown-body post-article-body">
           <ReactMarkdown
             remarkPlugins={[remarkGfm, remarkMath]}
-            rehypePlugins={[rehypeRaw, rehypeMathjax]}
+            rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeMathjax]}
           >
             {post.content}
           </ReactMarkdown>

@@ -5,7 +5,7 @@ description: Summarize on this interesting topic.
 # readingTime: 4 min
 ---
 
-![cover.png](/public/post/formal-verification-of-quantum-programs/cover.png)
+![cover.png](/post/formal-verification-of-quantum-programs/cover.png)
 
 > Title
 ```

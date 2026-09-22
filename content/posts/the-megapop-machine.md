@@ -5,7 +5,7 @@ description: Summary on this interesting topics
 # readingTime: 4 min
 ---
 
-![cover.png](/public/post/the-megapop-machine/cover.png)
+![cover.png](/post/the-megapop-machine/cover.png)
 
 > Title
 ```
