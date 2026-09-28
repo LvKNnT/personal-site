@@ -112,7 +112,7 @@ $$
 For example, if $n=4$ and $\det(\mathcal L)=16$, then
 
 $$
-\lambda_1(\mathcal L)le\sqrt4\cdot16^{1/4}=2\cdot2=4.
+\lambda_1(\mathcal L)\le\sqrt4\cdot16^{1/4}=2\cdot2=4.
 $$
 
 ### SVP and SIVP
