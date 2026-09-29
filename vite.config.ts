@@ -1,9 +1,9 @@
 import tailwindcss from '@tailwindcss/postcss';
 import { execFileSync } from 'node:child_process';
-import { readdirSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 import vinext from 'vinext';
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 
 const localBindingConfig = {
   main: 'vinext/server/fetch-handler',
@@ -28,7 +28,7 @@ function getPostModifiedDates() {
       .map((file) => {
         const slug = basename(file, '.md');
         const relativePath = `content/posts/${file}`;
-        let date = formatPostDate(statSync(resolve(postsDirectory, file)).mtime);
+        let modifiedAt = statSync(resolve(postsDirectory, file)).mtime;
 
         try {
           const status = execFileSync('git', ['status', '--porcelain', '--', relativePath], {
@@ -36,21 +36,52 @@ function getPostModifiedDates() {
           }).trim();
 
           if (!status) {
-            const lastCommitDate = execFileSync(
+            const lastCommitTimestamp = execFileSync(
               'git',
-              ['log', '-1', '--format=%cs', '--', relativePath],
+              ['log', '-1', '--format=%cI', '--', relativePath],
               { encoding: 'utf8' },
             ).trim();
 
-            if (lastCommitDate) date = lastCommitDate;
+            if (lastCommitTimestamp) modifiedAt = new Date(lastCommitTimestamp);
           }
         } catch {
           // Filesystem modification time is the fallback when Git is unavailable.
         }
 
-        return [slug, date];
+        return [slug, {
+          date: formatPostDate(modifiedAt),
+          timestamp: modifiedAt.toISOString(),
+        }];
       }),
   );
+}
+
+function refreshUndatedPostsPlugin(): Plugin {
+  const postsDirectory = resolve(process.cwd(), 'content/posts').replace(/\\/g, '/');
+
+  return {
+    name: 'refresh-undated-post-metadata',
+    configureServer(server) {
+      const refresh = (file: string) => {
+        const normalizedFile = file.replace(/\\/g, '/');
+        if (!normalizedFile.startsWith(`${postsDirectory}/`) || !normalizedFile.endsWith('.md')) return;
+
+        const source = readFileSync(file, 'utf8');
+        const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+        if (frontmatter?.[1].match(/^date:\s*\S+/m)) return;
+
+        void server.restart();
+      };
+
+      server.watcher.on('add', refresh);
+      server.watcher.on('change', refresh);
+
+      server.httpServer?.once('close', () => {
+        server.watcher.off('add', refresh);
+        server.watcher.off('change', refresh);
+      });
+    },
+  };
 }
 
 export default defineConfig(async () => {
@@ -70,6 +101,7 @@ export default defineConfig(async () => {
       __POST_MODIFIED_DATES__: JSON.stringify(getPostModifiedDates()),
     },
     plugins: [
+      refreshUndatedPostsPlugin(),
       vinext(),
       cloudflare({
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },

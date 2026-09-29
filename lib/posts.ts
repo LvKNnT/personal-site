@@ -2,6 +2,7 @@ export type Post = {
   slug: string;
   title: string;
   date: string;
+  sortTimestamp: string;
   displayDate: string;
   fullDate: string;
   description: string;
@@ -16,7 +17,10 @@ export type Post = {
   content: string;
 };
 
-declare const __POST_MODIFIED_DATES__: Readonly<Record<string, string>>;
+declare const __POST_MODIFIED_DATES__: Readonly<Record<string, {
+  date: string;
+  timestamp: string;
+}>>;
 
 const postFiles = import.meta.glob<string>('../content/posts/*.md', {
   eager: true,
@@ -53,10 +57,13 @@ function parsePost(path: string, source: string): Post {
 
   const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? '';
   const content = match ? source.slice(match[0].length).trim() : source.trim();
-  const modifiedDate = typeof __POST_MODIFIED_DATES__ === 'undefined'
+  const modified = typeof __POST_MODIFIED_DATES__ === 'undefined'
     ? undefined
     : __POST_MODIFIED_DATES__[slug];
-  const date = attributes.date || modifiedDate || '1970-01-01';
+  const date = attributes.date || modified?.date || '1970-01-01';
+  const sortTimestamp = attributes.date
+    ? `${attributes.date}T00:00:00.000Z`
+    : modified?.timestamp || '1970-01-01T00:00:00.000Z';
   const parsedDate = new Date(`${date}T00:00:00Z`);
   const words = content.split(/\s+/).filter(Boolean).length;
 
@@ -64,6 +71,7 @@ function parsePost(path: string, source: string): Post {
     slug,
     title: attributes.title ?? slug,
     date,
+    sortTimestamp,
     displayDate: new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric', timeZone: 'UTC' }).format(parsedDate),
     fullDate: new Intl.DateTimeFormat('en', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(parsedDate),
     description: attributes.description ?? '',
@@ -81,7 +89,7 @@ export function getAllPosts(): Post[] {
     .map(([path, source]) => parsePost(path, source))
     .filter((post) => !post.hidden)
     .sort((a, b) => {
-      const dateOrder = b.date.localeCompare(a.date);
+      const dateOrder = b.sortTimestamp.localeCompare(a.sortTimestamp);
 
       if (dateOrder !== 0) return dateOrder;
       if (a.series && a.series === b.series) {
