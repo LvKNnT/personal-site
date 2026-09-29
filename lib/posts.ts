@@ -16,6 +16,8 @@ export type Post = {
   content: string;
 };
 
+declare const __POST_MODIFIED_DATES__: Readonly<Record<string, string>>;
+
 const postFiles = import.meta.glob<string>('../content/posts/*.md', {
   eager: true,
   query: '?raw',
@@ -51,7 +53,10 @@ function parsePost(path: string, source: string): Post {
 
   const slug = path.split('/').pop()?.replace(/\.md$/, '') ?? '';
   const content = match ? source.slice(match[0].length).trim() : source.trim();
-  const date = attributes.date ?? '1970-01-01';
+  const modifiedDate = typeof __POST_MODIFIED_DATES__ === 'undefined'
+    ? undefined
+    : __POST_MODIFIED_DATES__[slug];
+  const date = attributes.date || modifiedDate || '1970-01-01';
   const parsedDate = new Date(`${date}T00:00:00Z`);
   const words = content.split(/\s+/).filter(Boolean).length;
 

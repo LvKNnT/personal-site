@@ -197,7 +197,7 @@ $$
 Multiplication cancels the determinant and proves
 
 $$
-\lambda_1(\mathcal L^*)\lambda_1(\mathcal L)le n.
+\lambda_1(\mathcal L^*)\lambda_1(\mathcal L) \le n.
 $$
 
 The stronger inequality with $\lambda_n(\mathcal L)$ is a transference theorem; it does not follow merely by replacing $\lambda_1$ with the larger $\lambda_n$ in this calculation.

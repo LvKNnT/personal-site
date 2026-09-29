@@ -108,6 +108,8 @@ Post content goes here.
 
 `readingTime` is optional. When omitted, it is calculated automatically at approximately 200 words per minute.
 
+`date` is also optional. When omitted, the site uses the Markdown file's last Git change date. New or locally modified files use their filesystem modification date until committed.
+
 To connect multiple posts as a series, give every chapter the same `series` value and an increasing `seriesOrder`:
 
 ```md
