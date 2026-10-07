@@ -179,4 +179,22 @@ Various subfields of AI have held contests by defining a standard task and invit
 
 > TLDR ( i - i )
 
-## 2. Intelligent Agent
+## 2. Intelligent Agents
+### 2.1 
+```
+Suppose that the performance measure is concerned with just hte first T time steps of the environment and ignores everything thereafter. Show that a rational agent's action may depend not just on the state of the environment but also on the time step it has reached. 
+```
+
+The performance measure will affect heavily the judgement of model when classifying if a move is "good" or "bad". Thus a rational agent's action may ddepend also on the time step it has reached.
+
+### 2.2 (vacuum-rationality-exercise)
+```
+Let us examine the rationality of various vacuum-cleaner agent functions.
+1. Show that the simple vacuum-cleaner agent function described in Figure 2.3 is indeed rational under the assumptions listed on page
+2. Describe a rational agent function for the case in which each movement costs one point. Does the corresponding agent program require internal state? 
+3. Discuss possible agent designs for the cases in which clean squares can become dirty and the geography of the environment is unknown. Does it make sense for the agent to learn from its experience in these cases  ? If so, what should it learn? If not, why not ? 
+```
+
+1. It is rational since if its place is dirty, it cleans and if not, it moves to other places. IF all the places is clean, it is still rational since moving has no penalty
+2. If each move costs one point, then non-stop agent will be irrational if it has no ability to aware when to stop. 
+3. 
